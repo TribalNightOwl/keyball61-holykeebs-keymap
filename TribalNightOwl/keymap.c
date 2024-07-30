@@ -26,19 +26,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define _MOVE 2
 #define _WHEEL 3
 #define _TRACKBALL 4
+#define _OPENCLOSE 5
+
 
 #define MOVE MO(_MOVE)
 #define NUMB MO(_NUMB)
 #define TRACKBALL MO(_TRACKBALL)
+#define OPENCLOSE MO(_OPENCLOSE)
+
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_left_ball(
-    KC_ESC    , KC_1            , KC_2       , KC_3         , KC_4         , KC_5  ,                                                                                    KC_6          , KC_7          , KC_8             , KC_9                        , KC_0                      , KC_PSCR ,
-    KC_INS    , KC_Q            , ALT_T(KC_W), CTL_T(KC_E)  , LSFT_T(KC_R) , KC_T  ,                                                                                    KC_Y          , RSFT_T(KC_U)  , RCTL_T(KC_I)     , LALT_T(KC_O)                , KC_P                      , _______ ,
-    KC_DELETE , LT(_WHEEL,KC_A) , ALT_T(KC_S), LCMD_T(KC_D) , LSFT_T(KC_F) , KC_G  ,                                                                                    KC_H          , RSFT_T(KC_J)  , RCMD_T(KC_K)     , LALT_T(KC_L)                , TD(CT_MINUS_UNDSCR_EQUAL) , KC_GRAVE,
-    _______   , KC_Z            , KC_X       , KC_C         , KC_V         , LT(MOVE,KC_B)    , TD(CT_LPRN_LBRC_LCBR_LTHAN) ,                 TD(CT_RPRN_RBRC_RCBR_GTHAN), LT(MOVE,KC_N) , KC_M          , TD(CT_COMM_SCLN) , TD(CT_DOT_CLN)              , TD(CT_SLSH_PIPE_BSLSH)    , _______ ,
-    _______   , TD(CT_TMUX)                                                , LT(MOVE,KC_BSPC) , LT(NUMB,KC_TAB)             ,                 KC_ENT                     , KC_SPC        , OSM(MOD_RSFT) , TD(CT_TMUX)      , TD(CT_SQTE_DQTE_BQTE_CARET) ,  _______                  , _______
+    KC_ESC               , KC_1                        , KC_2             , KC_3               , KC_4             , KC_5  ,                                                                                       KC_6          , KC_7             , KC_8             , KC_9                        , KC_0                        , KC_PSCR ,
+    KC_INS               , KC_Q                        , ALT_T(KC_W)      , CTL_T(KC_E)        , LSFT_T(KC_R)     , KC_T  ,                                                                                       KC_Y          , RSFT_T(KC_U)     , RCTL_T(KC_I)     , LALT_T(KC_O)                , KC_P                        , _______ ,
+    LT(_WHEEL,KC_DELETE) , LT(_WHEEL,KC_A)             , ALT_T(KC_S)      , LCMD_T(KC_D)       , LSFT_T(KC_F)     , KC_G  ,                                                                                       KC_H          , RSFT_T(KC_J)     , RCMD_T(KC_K)     , LALT_T(KC_L)                , TD(CT_MINUS_UNDSCR_EQUAL)   , KC_GRAVE,
+    _______              , KC_Z                        , KC_X             , LT(OPENCLOSE,KC_C) , KC_V             , LT(MOVE,KC_B)    , TD(CT_LPRN_LBRC_LCBR_LTHAN) ,                 TD(CT_RPRN_RBRC_RCBR_GTHAN), LT(MOVE,KC_N) , KC_M             , TD(CT_COMM_SCLN) , TD(CT_DOT_CLN)              , TD(CT_SLSH_PIPE_BSLSH)      , _______ ,
+    _______              , TD(CT_LPRN_LBRC_LCBR_LTHAN)                                                            , LT(MOVE,KC_BSPC) , LT(NUMB,KC_TAB)             ,                 KC_ENT                     , KC_SPC        , OSM(MOD_RSFT)    , TD(CT_TMUX)      , TD(CT_SQTE_DQTE_BQTE_CARET) , TD(CT_RPRN_RBRC_RCBR_GTHAN) , _______
   ),
 
   [_NUMB] = LAYOUT_left_ball(
@@ -72,6 +76,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______ , KC_BTN3 , KC_BTN2 , KC_BTN1 , KC_NO   , KC_NO       , _______  ,                   _______ , KC_NO   , KC_NO   , KC_BTN1 , KC_BTN2 , KC_BTN3 , _______ ,
     _______ , _______                               , _______     , _______  ,                   _______ , _______ , _______ , _______ , _______ , _______ , _______
   ),
+
+  [_OPENCLOSE] = LAYOUT_left_ball(
+    _______ , _______ , _______ , _______ , _______                     , TO(_QWERTY) ,                                 _______ , _______                     , _______ , _______ , _______ , _______ ,
+    _______ , _______ , _______ , _______ , _______                     , _______     ,                                 _______ , _______                     , _______ , _______ , _______ , _______ ,
+    _______ , _______ , _______ , _______ , _______                     , _______     ,                                 _______ , _______                     , _______ , _______ , _______ , _______ ,
+    _______ , _______ , _______ , _______ , TD(CT_LPRN_LBRC_LCBR_LTHAN) , _______     , _______ ,            _______  , _______ , TD(CT_RPRN_RBRC_RCBR_GTHAN) , _______ , _______ , _______ , _______ ,
+    _______ , _______                                                   , _______     , _______ ,            _______  , _______ , _______                     , _______ , _______ , _______ , _______
+  ),
+
 };
 // clang-format on
 
